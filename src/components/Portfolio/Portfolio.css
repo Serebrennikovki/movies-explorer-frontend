@@ -1,0 +1,112 @@
+.portfolio{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    color: #FFFFFF;
+    width: 1140px; 
+}
+.portfolio__subtitle{
+    margin: 100px 0 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #8B8B8B;
+}
+.portfolio__works{
+    margin: 30px 0 0;
+    padding: 0;
+    width: 100%;
+}
+.portfolio__work{
+    padding: 20px 0 19px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #424242;
+    list-style: none;
+}
+
+.portfolio__work:last-child{
+    border: none;
+}
+
+.portfolio_link{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    justify-content: space-between;
+}
+
+.portfolio__nameLink{
+    margin: 0;
+    width: 600px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+.portfolio__arrow{
+    margin: 0;
+    width: 29px;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 60px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 1200px) {
+    .portfolio{
+        width: calc(100vw - 100px);
+    }
+    .portfolio__subtitle{
+        margin: 90px 0 0;
+        color:  #A0A0A0;
+    }
+    .portfolio_link{
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        justify-content: space-between;
+    }
+    .portfolio__nameLink{
+        font-size: 28px;
+    }  
+    .portfolio__arrow{
+        width: 27px;
+        font-size: 28px;
+
+    }
+}
+@media screen and (max-width: 720px) {
+    .portfolio{
+        width: calc(100vw - 36px);
+    }
+    .portfolio__subtitle{
+        margin: 70px 0 0;
+        font-size: 14px;
+    }
+    .portfolio__works{
+        margin: 20px 0 0;
+    }
+    .portfolio__work{
+        border-bottom: 1px solid  #E6E6E6;
+    }
+    
+    .portfolio__nameLink{
+        font-size: 18px;
+        line-height: 28px;
+    }
+    
+    .portfolio__arrow{
+        width: 18px;
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
