@@ -5,7 +5,7 @@ function AuthForm({isRegisterForm, titleAuth, nameButton, errorText }){
 
     return(
         <form className="formAuth" > 
-            <img className='formAuth__logo' src={logo} alt='логотип'/>
+            <a className='formAuth__linkLogo' href='/'><img className='formAuth__logo' src={logo} alt='логотип'/></a>
             <h2 className = "formAuth__title">{titleAuth}</h2>
             <div className='formAuth__inputs'>
                 <div className={`formAuth__inputConteiner  ${isRegisterForm ? '' : 'formAuth__input_display_none'}`} >

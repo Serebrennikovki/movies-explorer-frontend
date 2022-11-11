@@ -3,12 +3,19 @@ import AuthForm from '../AuthForm/AuthForm';
 
 function Login(){
     return(
-        <AuthForm
-        isRegisterForm={false}
-        titleAuth={'Рады видеть!'}
-        nameButton={'Войти'}
-        errorText={''}
-        />
+        <div>
+            <header></header>
+            <main>
+                <AuthForm
+                    isRegisterForm={false}
+                    titleAuth={'Рады видеть!'}
+                    nameButton={'Войти'}
+                    errorText={''}
+                />
+            </main>
+            <footer></footer>
+        </div>
+        
     )
 }
 

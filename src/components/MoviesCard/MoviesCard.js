@@ -10,7 +10,7 @@ function MoviesCard(props){
                     <h2 className='moviesCard__title'>{props.card.nameRu}</h2>
                     <p className='moviesCard__duration'>{props.card.duration}</p>
                 </div>
-                <button className={`moviesCard__buttonSave ${viewButton}`}></button>
+                <button type='button' className={`moviesCard__buttonSave ${viewButton}`}></button>
             </div>
             <img className='moviesCard__poster' alt={props.card.nameRu} src={poster}/>
         </li>

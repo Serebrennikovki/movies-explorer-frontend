@@ -23,6 +23,9 @@
     height: 30px;
     object-fit: contain; 
 }
+.moviesCard__buttonSave:hover{
+    opacity: 0.8;
+}
 .moviesCard__buttonSave_type_active{
     background-image: url(../../images/saveActiveSaveMovie-min.svg);
 }

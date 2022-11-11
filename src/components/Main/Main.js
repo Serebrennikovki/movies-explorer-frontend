@@ -11,11 +11,13 @@ function Main() {
   return (
     <div className="main">
         <Header/>
+      <main>
         <Promo/>
         <AboutProject/>
         <Techs/>
         <AboutMe/>
         <Portfolio/>
+      </main>
         <Footer/>
     </div>
   );

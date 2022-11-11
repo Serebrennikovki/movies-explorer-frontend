@@ -3,12 +3,20 @@ import AuthForm from '../AuthForm/AuthForm';
 
 function Register(){
     return(
-        <AuthForm
-        isRegisterForm={true}
-        titleAuth={'Добро пожаловать!'}
-        nameButton={'Зарегистрироваться'}
-        errorText={'Что-то пошло не так...'}
-        />
+        <div>
+            <header></header>
+            <main>
+                <AuthForm
+            isRegisterForm={true}
+            titleAuth={'Добро пожаловать!'}
+            nameButton={'Зарегистрироваться'}
+            errorText={'Что-то пошло не так...'}
+            />
+            </main>
+            <footer></footer>
+        </div>
+        
+        
     )
 }
 

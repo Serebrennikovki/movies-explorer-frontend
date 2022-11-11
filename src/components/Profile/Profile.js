@@ -1,12 +1,13 @@
 import './Profile.css';
 import Header from '../Header/Header';
 
-function Profile(){
+function Profile({openBM}){
     const name = 'Константин';
     const email = 'serebrennikov_k_i@mail.ru';
     return(
         <div className='profile'>
-            <Header/>
+            <Header
+            openBurgerMenu = {openBM}/>
             <main className='profile__main'>
                 <h2 className='profile__title'>Привет, {name}!</h2>
                 <form className='profile__form'>

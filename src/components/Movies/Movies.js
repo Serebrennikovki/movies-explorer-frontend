@@ -10,14 +10,16 @@ function Movies({openBM}){
         <div className='movies'>
             <Header
             openBurgerMenu = {openBM}/>
-            <SearchForm/>
-            <MoviesCardList
-            path='movies'
-            MoviesCard={MoviesCard}
-            />
-            <div className='movies__buttonConteiner'>
-                <button type='button' className='movies__button'>Ещё</button>
-            </div>
+            <main>
+                <SearchForm/>
+                <MoviesCardList
+                path='movies'
+                MoviesCard={MoviesCard}
+                />
+                <div className='movies__buttonConteiner'>
+                    <button type='button' className='movies__button'>Ещё</button>
+                </div>
+            </main>
             <Footer/>
         </div>
     )

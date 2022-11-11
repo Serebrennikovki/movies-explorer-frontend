@@ -8,11 +8,15 @@
     font-style: normal;
     color: #fff;
 }
-.formAuth__logo{
+.formAuth__linkLogo{
     margin-top: 70px;
     width: 38px;
     height: 38px;
     align-self: flex-start;
+}
+.formAuth__logo{
+    width: 38px;
+    height: 38px;
 }
 .formAuth__title{
     margin: 40px auto 0;
@@ -72,6 +76,10 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
+    color: #FFFFFF
+}
+.formAuth__button:hover{
+    opacity: 0.8;
 }
 .authForm__error{
     font-weight: 400;
@@ -100,12 +108,15 @@
     font-size: 14px;
     line-height: 17px;
 }
+.formAuth__link:hover{
+    opacity: 0.7;
+}
 
 @media screen and (max-width: 460px) {
     .formAuth{
         width: calc(100vw - 60px);
     }
-    .formAuth__logo{
+    .formAuth__linkLogo{
         align-self: center;
         margin-top: 56px;
     }

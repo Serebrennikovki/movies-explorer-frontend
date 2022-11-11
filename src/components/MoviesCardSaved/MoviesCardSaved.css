@@ -14,7 +14,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.moviesCard__buttonSave{
+.moviesCard__buttonSaved{
     padding: 0;
     border: 0;
     background: transparent;
@@ -22,6 +22,9 @@
     width: 30px;
     height: 30px;
     object-fit: contain; 
+}
+.moviesCard__buttonSaved:hover{
+    opacity: 0.8;
 }
 .moviesCard__buttonDel{
     background-image: url(../../images/delMovie-min.svg);

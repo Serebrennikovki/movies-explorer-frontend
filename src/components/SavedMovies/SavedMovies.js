@@ -5,14 +5,17 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import MoviesCardSaved from '../MoviesCardSaved/MoviesCardSaved';
 
-function SavedMovies(){
+function SavedMovies({openBM}){
     return(
         <div className='SavedMovies'>
-            <Header/>
-            <SearchForm/>
-            <MoviesCardList
-            MoviesCard={MoviesCardSaved}
-            />
+            <Header
+            openBurgerMenu = {openBM}/>
+            <main>
+                <SearchForm/>
+                <MoviesCardList
+                MoviesCard={MoviesCardSaved}
+                />
+            </main>
             <Footer/>
         </div>
         

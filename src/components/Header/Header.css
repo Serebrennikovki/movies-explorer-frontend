@@ -10,6 +10,10 @@
 }
 
 .header__logo{
+    height: 38px;
+    width: 38px;
+}
+.header__linkImg{
     margin: 18px 0 18px;
     height: 38px;
     width: 38px;
@@ -27,6 +31,9 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
+}
+.header__link:hover{
+    opacity: 0.7;
 }
 .header__link_type_signin{
     width: 76px;
@@ -75,11 +82,17 @@
     line-height: 18px;
     color: #FFFFFF;
 }
+.header__film:hover{
+    opacity: 0.7;
+}
 .header__accountImg{
     height: 32px;
     width: 100px;
     object-fit: contain;
     color:#FFFFFF;
+}
+.header__accountImg:hover{
+    opacity: 0.7;
 }
 .header__burgerMenu{
     display: none;
@@ -108,6 +121,9 @@
         height: 44px;
         width: 44px;
         object-fit: contain;
+    }
+    .header__imgBurgerMenu:hover{
+        opacity: 0.7;
     }
 }
 

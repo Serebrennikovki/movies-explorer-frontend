@@ -103,10 +103,16 @@
         font-size: 18px;
         line-height: 28px;
     }
+    .portfolio__nameLink:hover{
+        opacity: 0.7;
+    }
     
     .portfolio__arrow{
         width: 18px;
         font-size: 18px;
         line-height: 28px;
+    }
+    .portfolio__arrow:hover{
+        opacity: 0.7;
     }
 }

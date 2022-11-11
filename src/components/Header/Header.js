@@ -10,7 +10,7 @@ function Header({openBurgerMenu}){
             
             <Switch>
                 <Route exact path='/'>
-                    <img className='header__logo' src={logo} alt='лого'/>
+                <a className='header__linkImg' href='/'><img className='header__logo' src={logo} alt='лого'/></a>
                     <div className='header__links'>
                         <Link to='/signup' className='header__link header__link_type_signup'>Регистрация</Link>
                         <Link to='/signin' className='header__link header__link_type_signin'><p className='header__text'>Войти</p></Link>
@@ -18,7 +18,7 @@ function Header({openBurgerMenu}){
                 </Route>
                 <Route path='/movies'>
                     <div className='header__container'>
-                        <img className='header__logo' src={logo} alt='лого'/>
+                        <a className='header__linkImg' href='/'><img className='header__logo' src={logo} alt='лого'/></a>
                         <div className='header__films'>
                             <Link to='/movies' className='header__film'>Фильмы</Link>
                             <Link to='/saved-movies' className='header__film'>Сохранённые фильмы</Link>
@@ -33,7 +33,7 @@ function Header({openBurgerMenu}){
                 </Route>
                 <Route path='/saved-movies'>
                     <div className='header__container'>
-                        <img className='header__logo' src={logo} alt='лого'/>
+                        <a className='header__linkImg' href='/'><img className='header__logo' src={logo} alt='лого'/></a>
                         <div className='header__films'>
                             <Link to='/movies' className='header__film'>Фильмы</Link>
                             <Link to='/saved-movies' className='header__film'>Сохранённые фильмы</Link>
@@ -48,7 +48,7 @@ function Header({openBurgerMenu}){
                 </Route>
                 <Route path='/profile'>
                     <div className='header__container'>
-                        <img className='header__logo' src={logo} alt='лого'/>
+                        <a className='header__linkImg' href='/'><img className='header__logo' src={logo} alt='лого'/></a>
                         <div className='header__films'>
                             <Link to='/movies' className='header__film'>Фильмы</Link>
                             <Link to='/saved-movies' className='header__film'>Сохранённые фильмы</Link>

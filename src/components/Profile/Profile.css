@@ -57,6 +57,10 @@
     font-size: 13px;
     line-height: 16px;
 }
+
+.profile__submitForm:hover{
+    opacity: 0.8;
+}
 .profile__button{
     margin: 16px auto;
     border: none;
@@ -66,6 +70,10 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
+}
+
+.profile__button:hover{
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 1000px) {
