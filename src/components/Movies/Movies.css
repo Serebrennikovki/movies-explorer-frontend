@@ -1,0 +1,36 @@
+.movies{
+    display: flex;
+    flex-direction: column;
+}
+
+.movies__buttonConteiner{
+    padding: 50px 0 80px;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+}
+
+.movies__button{
+    padding: 0;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    border: none;
+    height: 36px;
+    width: 320px;
+    background: #2F2F2F;
+    border-radius: 6px;
+    color: white;
+}
+.movies__button:hover{
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 400px) {
+    .movies__button{
+        width: calc(100vw - 80px);
+    }
+}

@@ -1,0 +1,122 @@
+.burgerMenu{
+    font-family: 'Inter', 'Helvetica', 'sans-serif';
+    position: fixed;
+    z-index: 10;
+    color: black;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s linear;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+}
+.burgerMenu_opened{
+    visibility: visible;
+    opacity: 1;
+}
+.burgerMenu__overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+}
+.burgerMenu__window{
+    position: relative;
+    width: 520px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #202020;
+    z-index: 2;
+}
+.burgerMenu__btnClose{
+    padding: 0;
+    border: none;
+    margin: 22px 22px 0;
+    align-self: end;
+    width: 25px;
+    height: 25px;
+    background: url('../../images/GroupbtnClose-min.svg');
+    object-fit: cover;
+}
+.burgerMenu__btnClose:hover{
+    opacity: 0.8;
+}
+.burgerMenu__navigation{
+    margin: 87px auto 0;
+    list-style: none;
+}
+.burgerMenu__items{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.burgerMenu__item{
+    margin: 22px auto 0;
+    text-decoration: none;
+    list-style: none;
+    padding: 0 0 6px 0;
+}
+.burgerMenu__item:first-child{
+    margin: 0 auto;
+}
+.burgerMenu__item:last-child{
+    margin: 515px auto 0;
+}
+.burgerMenu__item_type_choosen{
+    padding: 0 0 4px 0;
+    border-bottom: 2px solid #FFFFFF;
+}
+.burgerMenu__link{
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px; 
+    color: #FFFFFF;
+    text-align: center;
+}
+.burgerMenu__link:hover{
+    opacity: 0.7;
+}
+.burgerMenu__link_type_account{
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height: 30px;   
+}
+@media screen and (max-width: 520px) {
+    .burgerMenu__overlay{
+        display: none;
+    }
+    .burgerMenu__window{
+        width: 100vw;
+    }
+    .burgerMenu__btnClose{
+        margin: 11px 11px 0;
+    }
+    .burgerMenu__navigation{
+        margin: 96px auto 0;
+    }
+    .burgerMenu__item{
+        padding: 0 0 9px 0;
+        margin: 15px auto 0;
+    }
+    .burgerMenu__item:last-child{
+        margin: 435px auto 0;
+    }
+    .burgerMenu__item_type_choosen{
+        padding: 0 0 7px 0;
+    }
+
+}
