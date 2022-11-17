@@ -1,7 +1,7 @@
 import './Login.css';
 import AuthForm from '../AuthForm/AuthForm';
 
-function Login(){
+function Login({handleSubmit, errorText}){
     return(
         <div>
             <header></header>
@@ -10,7 +10,8 @@ function Login(){
                     isRegisterForm={false}
                     titleAuth={'Рады видеть!'}
                     nameButton={'Войти'}
-                    errorText={''}
+                    errorText={errorText}
+                    functionSubmit={handleSubmit}
                 />
             </main>
             <footer></footer>

@@ -3,6 +3,11 @@
 
 -----------------------------
 https://drive.google.com/file/d/13S8lamEyYM0cLQr_jUqnj48FEmJPyCBw/view?usp=share_link
+
+
+# Поиск по ключевому слову
+происходит в NameRu и description, поиск регистронезависимый;
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,19 +1,29 @@
 import './MoviesCardSaved.css';
-import poster from '../../images/picposter.png';
+import {BASE_URL_MOVIES} from '../../utils/data';
 
-function MoviesCard(props){
+function MoviesCardSaved({film, deleteFilm}){
+    const duration = {
+        minutes: film.duration%60,
+        hours : Math.floor(film.duration/60)
+    }
+    function handleButton(){
+        deleteFilm(film);
+    }
+
     return(
-        <li className='moviesCard'>
-            <div className='moviesCard__conteiner'>
-                <div className='moviesCard__textConteiner'>
-                    <h2 className='moviesCard__title'>{props.card.nameRu}</h2>
-                    <p className='moviesCard__duration'>{props.card.duration}</p>
-                </div>
-                <button type='button' className='moviesCard__buttonSaved moviesCard__buttonDel'></button>
+        <li className='moviesCardSaved'>
+            <div className='moviesCardSaved__conteiner'>
+                <a target='_target' href={film.trailerLink} className='moviesCardSaved__textConteiner'>
+                    <h2 className='moviesCardSaved__title'>{film.nameRU}</h2>
+                    <p className='moviesCardSaved__duration'>{ duration.hours > 0 ? `${duration.hours}ч` : '' }{duration.minutes}м</p>
+                </a>
+                <button type='button' className='moviesCardSaved__buttonSaved moviesCardSaved__buttonDel' onClick={handleButton}></button>
             </div>
-            <img className='moviesCard__poster' alt={props.card.nameRu} src={poster}/>
+            <a  className='moviesCardSaved__link' target='_target' href={film.trailerLink}>
+                    <img className='moviesCardSaved__poster' alt={film.nameRU} src={film.image}/>
+            </a> 
         </li>
     )
 }
 
-export default MoviesCard; 
+export default MoviesCardSaved; 

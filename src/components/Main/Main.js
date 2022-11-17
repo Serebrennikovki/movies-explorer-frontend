@@ -7,10 +7,14 @@ import AboutMe from '../AboutMe/AboutMe';
 import Portfolio from '../Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
 
-function Main() {
+function Main({loggedIn, openBM}) {
+  console.log(loggedIn);
   return (
     <div className="main">
-        <Header/>
+        <Header
+        loggedIn={loggedIn}
+        openBurgerMenu={openBM}
+        />
       <main>
         <Promo/>
         <AboutProject/>
