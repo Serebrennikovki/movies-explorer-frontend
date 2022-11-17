@@ -1,3 +1,8 @@
+# Ссылка на пулреквест
+---------------------
+https://github.com/Serebrennikovki/movies-explorer-frontend/pull/2
+
+
 # Ссылка на макет
 -----------------------------
 
