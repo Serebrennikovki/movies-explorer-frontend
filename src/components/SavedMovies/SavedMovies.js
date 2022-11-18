@@ -74,6 +74,7 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
     return(
         <div className='SavedMovies'>
             <Header
+            path='savedMovies'
             openBurgerMenu = {openBM}
             loggedIn={loggedIn}/>
             <main>

@@ -6,10 +6,8 @@ function FilterCheckbox({path, isDisabled, pressedCheckBox}){
 
     useEffect(()=>{
         if(path === 'movies'){
-            const checkBox = document.querySelector('.filterCheckBox__checkBox');
             let initialState = localStorage.getItem('isToggled'); 
             if(initialState==='true'){
-                checkBox.setAttribute("checked", "true");
                 setIsActive(true);
             }
         }
@@ -24,8 +22,8 @@ function FilterCheckbox({path, isDisabled, pressedCheckBox}){
 
     return(
         <label className='filterCheckBox'>
-            <input type='checkBox' className='filterCheckBox__checkBox' disabled={isDisabled} defaultChecked={isActive}/>
-            <span className='filterCheckBox__slider' onClick={handleCheckBox}/>
+            <input type='checkBox' className='filterCheckBox__checkBox' disabled={isDisabled} checked={isActive} onChange={handleCheckBox}/>
+            <span className='filterCheckBox__slider'/>
         </label>
     )
 }

@@ -4,7 +4,7 @@ import logoAccount from '../../images/profilelogoAccount-min.svg';
 import imgBurgerMenu from '../../images/mainburgerMenu-min.svg'
 import { Link} from 'react-router-dom';
 
-function Header({openBurgerMenu, loggedIn}){
+function Header({path, openBurgerMenu, loggedIn}){
     return(
         <header>
             {
@@ -20,7 +20,7 @@ function Header({openBurgerMenu, loggedIn}){
                     <Link to='/profile' className='header__account'>
                         <img className='header__accountImg' src={logoAccount} alt='иконка'/>
                     </Link>
-                    <button type='button' className='header__burgerMenu' onClick={openBurgerMenu}>
+                    <button type='button' className='header__burgerMenu' onClick={()=>{openBurgerMenu(path)}}>
                         <img src={imgBurgerMenu} className='header__imgBurgerMenu' alt='кнопка'/>
                     </button>
                 </div>   

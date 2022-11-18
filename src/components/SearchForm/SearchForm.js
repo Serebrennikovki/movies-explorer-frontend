@@ -12,8 +12,10 @@ function SearchForm({path, submitForm, isLoadingFilms, sortShortFilms}){
     
     useEffect(()=>{
         if(path === 'movies'){
-            setKeyWord(localStorage.getItem('keyWord'));
-            setIsToggled(localStorage.getItem('isToggled'));
+            let initialState = localStorage.getItem('keyWord');
+            if(initialState !== null){
+                setKeyWord(initialState);
+            }   
         }
     },[])
 

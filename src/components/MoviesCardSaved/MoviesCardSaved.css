@@ -49,6 +49,10 @@
     font-size: 15px;
     line-height: 18px;
     color: #FFFFFF;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .moviesCardSaved__duration{
     margin: 9px 14px 0;
@@ -77,6 +81,9 @@
     .moviesCardSaved{
         width: 300px;
         height: 236px
+    }
+    .moviesCardSaved__textConteiner{
+        width: calc(100% - 80px);
     }
     .moviesCardSaved__poster{
         height: 168px;

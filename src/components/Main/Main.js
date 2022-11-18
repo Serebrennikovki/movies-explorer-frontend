@@ -12,6 +12,7 @@ function Main({loggedIn, openBM}) {
   return (
     <div className="main">
         <Header
+        path='main'
         loggedIn={loggedIn}
         openBurgerMenu={openBM}
         />

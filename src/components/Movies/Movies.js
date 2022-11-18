@@ -110,6 +110,7 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
     return(
         <div className='movies'>
             <Header
+            path='movies'
             openBurgerMenu = {openBM}
             loggedIn={loggedIn}/>
             <main>

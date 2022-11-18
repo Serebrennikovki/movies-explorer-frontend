@@ -20,8 +20,9 @@ const [ errorTextRegistration, setErrorTextRegistraion ] = useState('');
 const [ errorTextLogin, setErrorTextLogin ] = useState('');
 const [ errorTextProfile, setErrorTextProfile ] = useState('');
 const [ currentUser, setCurrentUser ] = useState({});
-const [ jwt , setJWT ] = useState('');
+const [ token , setToken ] = useState('');
 const [ loggedIn, setLoggedIn ] = useState(false);
+const [ pathWhereOpenBM, setPathWhereOpenBM] = useState('');
 const history = useHistory();
 
 useEffect(()=>{
@@ -29,33 +30,33 @@ useEffect(()=>{
 },[]);
 
 useEffect(()=>{
-  setJWT(jwt);
-},[jwt]);
+  setToken(token);
+},[loggedIn]);
 
 
-function openBurgerMenu(){
+function openBurgerMenu(path){
   setIsOpenBurgerMenu(true);
-  console.log('openPopup');
+  setPathWhereOpenBM(path)
 }
 function closeBurgerMenu(){
   setIsOpenBurgerMenu(false);
 }
 
 function addFilm(film){
-  return api.addFilm(film, jwt)
+  return api.addFilm(film, token)
 }
 
 function deleteFilm(id){
-  console.log('id =', id);
-  return api.deleteFilm(id, jwt)
+  return api.deleteFilm(id, token)
 }
 
 function getFilms(){
-  return api.getFilms( jwt)
+  const jwt = localStorage.getItem('jwt');
+  return api.getFilms(jwt)
 }
 
 function changeProfile(userInfo){
-  api.changeUserInfo(userInfo, jwt)
+  api.changeUserInfo(userInfo, token)
     .then((newUserInfo) => {
       setCurrentUser(newUserInfo);
     })
@@ -72,7 +73,7 @@ function changeProfile(userInfo){
 function onLogin(valuesForm){
   api.login(valuesForm.email, valuesForm.password)
   .then(res=>{
-    setJWT(res.jwt);
+    setToken(res.jwt);
     localStorage.setItem('jwt', res.jwt);
     setLoggedIn(true);
     setCurrentUser(res.user);
@@ -89,10 +90,8 @@ function onLogin(valuesForm){
 }
 
 function onRegistration(valuesForm){
-  console.log('onRegistrationValuesForm =',valuesForm);
     api.register(valuesForm)
     .then(res=>{
-      console.log('res from API = ', res);
       if(res._id){
         onLogin(valuesForm);
       } else {
@@ -120,9 +119,9 @@ function tokenCheck(){
   api.getUserInfo(jwt)
     .then((data)=>{
       if(data){
+        setToken(jwt);
         setLoggedIn(true);
         setCurrentUser(data);
-        setJWT(jwt);
       } else {
         localStorage.clear();
         history.push('/');
@@ -185,6 +184,7 @@ function tokenCheck(){
           </Route>
         </Switch>
         <BurgerMenu
+        path={pathWhereOpenBM}
         isOpened={isOpenBurgerMenu}
         closeBM={closeBurgerMenu}/>
       </div>

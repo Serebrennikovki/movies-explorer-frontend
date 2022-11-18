@@ -38,7 +38,7 @@ function MoviesCard({film, savedFilms, saveFilm, deleteFilm}){
 
     function addFilm(cardFilm){
         saveFilm(cardFilm)
-        .then((res)=>{ cardFilm = res})
+        .then((res)=>{ setCardFilm(res)})
         .catch((err)=>{console.log(err)})
     }
 
@@ -56,7 +56,7 @@ function MoviesCard({film, savedFilms, saveFilm, deleteFilm}){
             <li className='moviesCard'>
                 <div className='moviesCard__conteiner'>
                     <a className='moviesCard__textConteiner' href={cardFilm.trailerLink} target='_target'>
-                        <h2 className='moviesCard__title'>{cardFilm.nameRU}</h2>
+                        <h2 className='moviesCard__title block'>{cardFilm.nameRU}</h2>
                         <p className='moviesCard__duration'>{ duration.hours > 0 ? `${duration.hours}ч` : '' }{duration.minutes}м</p>
                     </a>
                     <button type='button' className={cardSavedButtonClassName} onClick={(e)=>handleClick(e)}></button>
