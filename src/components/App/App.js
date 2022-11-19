@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Main  from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -18,20 +18,15 @@ function App() {
 const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
 const [ errorTextRegistration, setErrorTextRegistraion ] = useState('');
 const [ errorTextLogin, setErrorTextLogin ] = useState('');
-const [ errorTextProfile, setErrorTextProfile ] = useState('');
 const [ currentUser, setCurrentUser ] = useState({});
 const [ token , setToken ] = useState('');
-const [ loggedIn, setLoggedIn ] = useState(false);
+const [ loggedIn, setLoggedIn ] = useState(true);
 const [ pathWhereOpenBM, setPathWhereOpenBM] = useState('');
 const history = useHistory();
 
 useEffect(()=>{
   tokenCheck();
 },[]);
-
-useEffect(()=>{
-  setToken(token);
-},[loggedIn]);
 
 
 function openBurgerMenu(path){
@@ -52,22 +47,14 @@ function deleteFilm(id){
 
 function getFilms(){
   const jwt = localStorage.getItem('jwt');
-  return api.getFilms(jwt)
+  api.getFilms(jwt)
+    .then((res)=>{
+      localStorage.setItem('savedFilms',JSON.stringify(res));})
+      .catch((err)=>{console.log(err)})
 }
 
 function changeProfile(userInfo){
-  api.changeUserInfo(userInfo, token)
-    .then((newUserInfo) => {
-      setCurrentUser(newUserInfo);
-    })
-    .catch((err)=>{
-      console.log('errProfile = ', err);
-      if(err === 409){
-        setErrorTextProfile(TEXT_ERRORS.profile.incorrectData);
-      } else {
-        setErrorTextProfile(TEXT_ERRORS.profile.others);
-      }
-    })
+  return api.changeUserInfo(userInfo, token)
 }
 
 function onLogin(valuesForm){
@@ -77,7 +64,7 @@ function onLogin(valuesForm){
     localStorage.setItem('jwt', res.jwt);
     setLoggedIn(true);
     setCurrentUser(res.user);
-    history.push('/');
+    history.push('/movies');
    })
     .catch((err)=>{
       if(err === 400){
@@ -122,6 +109,7 @@ function tokenCheck(){
         setToken(jwt);
         setLoggedIn(true);
         setCurrentUser(data);
+        getFilms();
       } else {
         localStorage.clear();
         history.push('/');
@@ -142,14 +130,14 @@ function tokenCheck(){
     <div className="app">
         <Switch>
           <Route path='/signin'>
-            <Login
-              handleSubmit={onLogin}
-              errorText = {errorTextLogin}/>
+            {loggedIn ? <Redirect to='/'/>:<Login
+                                            handleSubmit={onLogin}
+                                            errorText = {errorTextLogin}/>}
           </Route>
           <Route path='/signup'>
-            <Register
-            handleSubmit={onRegistration}
-            errorText={errorTextRegistration}/>
+            {loggedIn ? <Redirect to='/'/>:<Register
+                                          handleSubmit={onRegistration}
+                                          errorText={errorTextRegistration}/>}
           </Route>
           <Route exact path='/'>
             <Main
@@ -176,7 +164,7 @@ function tokenCheck(){
             openBM={openBurgerMenu}
             onChangeProfile={changeProfile}
             onSignOut={onSignOut}
-            errorText={errorTextProfile}
+            setCurrentUser={setCurrentUser}
             /> 
             
           <Route path='*'>

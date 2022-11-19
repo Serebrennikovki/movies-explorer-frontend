@@ -38,7 +38,10 @@ function MoviesCard({film, savedFilms, saveFilm, deleteFilm}){
 
     function addFilm(cardFilm){
         saveFilm(cardFilm)
-        .then((res)=>{ setCardFilm(res)})
+        .then((res)=>{
+            setCardFilm(res);
+            setViewButton(!viewButton);
+        })
         .catch((err)=>{console.log(err)})
     }
 
@@ -48,7 +51,6 @@ function MoviesCard({film, savedFilms, saveFilm, deleteFilm}){
             setViewButton(!viewButton);
         } else {
             addFilm(cardFilm);
-            setViewButton(!viewButton);
         }
     }
 

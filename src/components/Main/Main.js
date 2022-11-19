@@ -8,7 +8,6 @@ import Portfolio from '../Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
 
 function Main({loggedIn, openBM}) {
-  console.log(loggedIn);
   return (
     <div className="main">
         <Header

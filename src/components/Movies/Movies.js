@@ -24,7 +24,10 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
             setSortingArrayFilms(JSON.parse(localStorage.getItem('MoviesCardList')));
             setShortFilm(localStorage.getItem('isToggled'));
             setKeyWord(localStorage.getItem('keyWord'));
-        }
+            if(localStorage.getItem('keyWord') !== ''){
+                handleEmptyArray(JSON.parse(localStorage.getItem('MoviesCardList')).length);
+            }  
+        }     
     },[])
 
     useEffect(()=>{
@@ -58,7 +61,7 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
         console.log(array.length, array);
         const keyWordLower = keyWord.toLowerCase();
         array = array.filter((film)=>{
-            if(film.nameRU.toLowerCase().includes(keyWordLower) || film.description.toLowerCase().includes(keyWordLower)){
+            if(film.nameRU.toLowerCase().includes(keyWordLower)){
                 return true;
             } else {
                 return false;
@@ -86,26 +89,6 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
         }
     }
 
-    /*function saveFilm(cardFilm){
-        addFilm(cardFilm)
-        .then((res)=>{
-            console.log('res = ', res);
-            let newArray = sortingArrayFilms;
-            console.log('newArray = ', newArray);
-            let elementSearch = newArray.find((item)=>{ console.log(item.id, ' ',res.movieId)
-                return item.id === res.movieId});
-            let indexSearch = newArray.findIndex((item)=>{ console.log(item.id, ' ',res.movieId)
-                return item.id === res.movieId});
-            console.log('indexSearch=', indexSearch);
-            elementSearch._id = res._id;
-            console.log('elementSearch=', elementSearch);
-            newArray.splice(indexSearch, 1, elementSearch);
-            console.log('newArrayAfter = ', newArray);
-            setSortingArrayFilms(newArray);
-        })
-        .catch((err)=>{console.log(err)})
-    }*/
-
 
     return(
         <div className='movies'>
@@ -127,7 +110,7 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
                     <Preloader/>
                     :
                         (
-                        sortingArrayFilms === null ?
+                        sortingArrayFilms.length === 0 ?
                         <h3 className='movies__text'>{errorSearchText}</h3>
                         :
                         <MoviesCardList

@@ -1,7 +1,7 @@
 import './AuthForm.css';
 import logo from '../../images/logo-min.svg';
 import { useState } from 'react';
-import { REGEX } from '../../utils/data';
+import { REGEX, TEXT_ERRORS } from '../../utils/data';
 
 function AuthForm({isRegisterForm, titleAuth, nameButton, errorText, functionSubmit }){
     const [values, setValues] = useState({});
@@ -16,6 +16,9 @@ function AuthForm({isRegisterForm, titleAuth, nameButton, errorText, functionSub
         setValues({...values, [name]: value});
         setErrors({...errors, [name]: target.validationMessage });
         setIsValid(target.closest("form").checkValidity());
+        if(name === 'name' && !target.closest("form").checkValidity()){
+            setErrors({...errors, [name]:TEXT_ERRORS.validation.inputName});
+        }
     }
     function handleSubmit(e){
         e.preventDefault();

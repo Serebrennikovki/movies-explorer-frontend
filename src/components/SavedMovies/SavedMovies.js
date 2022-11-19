@@ -8,16 +8,14 @@ import { DURATION_SHORT_FILMS ,  TEXT_ERRORS} from '../../utils/data';
 
 function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
     const [ savedArrayFilms, setSavedArrayFilms ] = useState([]);
+    const [ searchedArrayFilms, setSearchedArrayFilms ] = useState([]);
     const [ isLoading, setIsLoading ] = useState(false);
     const [ isShortFilm, setShortFilm] = useState(false);
     const [ errorSearchText, setErrorSearchText ] = useState('');
 
     useEffect(()=>{
-        setIsLoading(true);
-        getFilms()
-            .then((res)=>{setSavedArrayFilms(res)})
-            .catch((err)=>{console.log(err)})
-            .finally(()=>setIsLoading(false))
+        setSavedArrayFilms(JSON.parse(localStorage.getItem('savedFilms')));
+        setSearchedArrayFilms(JSON.parse(localStorage.getItem('savedFilms')));
     },[])
 
     useEffect(()=>{
@@ -25,21 +23,20 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
     },[savedArrayFilms])
 
 
-            
-
     function sortFilms(keyWord, isShortFilm){
-        setShortFilm(isShortFilm);
+        console.log(123);
+        setIsLoading(true);
         let array = savedArrayFilms;
         const keyWordLower = keyWord.toLowerCase();
         array = array.filter((film)=>{
-            if(film.nameRU.toLowerCase().includes(keyWordLower) || film.description.toLowerCase().includes(keyWordLower)){
+            if(film.nameRU.toLowerCase().includes(keyWordLower)){
                 return true;
             } else {
                 return false;
             }
         });
         handleEmptyArray(array.length);
-        setSavedArrayFilms(array);
+        setSearchedArrayFilms(array);
         if( isShortFilm ){
             getShortFilms(array);
         };      
@@ -47,12 +44,13 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
 
     function getShortFilms(array = savedArrayFilms){
        array = array.filter( film => film.duration < DURATION_SHORT_FILMS);
-       setSavedArrayFilms(array);
+       setSearchedArrayFilms(array);
        setShortFilm(true);
        handleEmptyArray(array.length);
     }
 
     function handleEmptyArray(lengthArray){
+        setIsLoading(false);
         if (lengthArray === 0 ){
             setErrorSearchText(TEXT_ERRORS.search.empty);
         } else {
@@ -62,17 +60,20 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
 
     function handleDeleteFilm(film){
         deleteSavedFilm(film._id)
-            .then(()=>{setSavedArrayFilms(savedArrayFilms.filter((item) => {
+            .then(()=>{
+            let array = savedArrayFilms.filter((item) => {
               if(!(item._id === film._id)){
                 return item;}
-            }))
+            });
+            setSavedArrayFilms(array);
+            setSearchedArrayFilms(array);
           })
             .catch((error)=>{console.log(error);})
     }
 
 
     return(
-        <div className='SavedMovies'>
+        <div className='moviesSaved'>
             <Header
             path='savedMovies'
             openBurgerMenu = {openBM}
@@ -85,12 +86,12 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
                  sortShortFilms={getShortFilms}/>
                
                     {
-                        savedArrayFilms === null ?
-                        <h3 className='movies__text'>{errorSearchText}</h3>
+                        searchedArrayFilms.length === 0 ?
+                        <h3 className='moviesSaved__text'>{errorSearchText}</h3>
                         :
                         <MoviesCardListSaved
                         deleteFilm={handleDeleteFilm}
-                        filmsArray={savedArrayFilms}
+                        filmsArray={searchedArrayFilms}
                         />
                     }
                         

@@ -23,7 +23,7 @@
     z-index: 1;
 }
 .moviesCardSaved__textConteiner{
-    width: calc(100% - 50px);
+    width: calc(100% - 80px);
     text-decoration: none;
 }
 .moviesCardSaved__buttonSaved{

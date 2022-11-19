@@ -14,7 +14,26 @@ export const TEXT_ERRORS = {
     'profile' : {
         'incorrectData': 'Пользователь с таким email уже существует.',
         'others' : 'При обновлении профиля произошла ошибка.',
+    },
+    'validation' : {
+        'inputName': 'Имя может содержать кириллицу, латиницу, пробел и дефис.'
     }
+
+}
+
+export const SETTINGS_VIEW_CARD = {
+     desktop : {
+        'add': 3,
+        'max': 12
+     },
+     tablet: {
+        'add': 2,
+        'max': 8
+     },
+     mobile: {
+        'add': 1,
+        'max': 5
+     }
 
 }
 
@@ -26,5 +45,5 @@ export const BASE_URL = 'https://api.serebrennikov.nomoredomains.icu/';
 
 export const REGEX = {
     'email' : '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.]{1}[a-zA-Z]{2,}$',
-    'name' : '[a-zA-Zа-яА-Я\-\s]*$',
+    'name' : '[a-zA-Zа-яА-Я\- ]*$',
 }

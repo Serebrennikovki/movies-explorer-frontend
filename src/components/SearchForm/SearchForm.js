@@ -4,7 +4,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useEffect, useState } from 'react';
 import { TEXT_ERRORS } from '../../utils/data';
 
-function SearchForm({path, submitForm, isLoadingFilms, sortShortFilms}){
+function SearchForm({path, submitForm, isLoadingFilms}){
     const [ isToggled, setIsToggled ] = useState(false);
     const [ keyWord, setKeyWord ] = useState('');
     const [ errorText, setErrorText ] = useState('');
@@ -20,17 +20,7 @@ function SearchForm({path, submitForm, isLoadingFilms, sortShortFilms}){
     },[])
 
     useEffect(()=>{
-        const inputSearch =  document.querySelector('.searchForm__inputSearch');
-        const buttonSubmit = document.querySelector('.searchForm__buttonSubmit');
-        if(isLoadingFilms){
-            setStateDisabled(true);
-            buttonSubmit.setAttribute("disabled", "");
-            inputSearch.setAttribute("readOnly", "");
-        } else {
-            setStateDisabled(false);
-            buttonSubmit.removeAttribute("disabled");
-            inputSearch.removeAttribute("readOnly");
-        }
+        setStateDisabled(isLoadingFilms);
     },[isLoadingFilms])
 
 
@@ -51,9 +41,7 @@ function SearchForm({path, submitForm, isLoadingFilms, sortShortFilms}){
     function handleCheckbox(state){
         console.log('state',state);
         setIsToggled(state);
-        if(state){
-        sortShortFilms();
-        }
+        submitForm(keyWord, state);
     }
 
     function handleInput(e){
@@ -65,9 +53,9 @@ function SearchForm({path, submitForm, isLoadingFilms, sortShortFilms}){
             <div className='searchForm__conteiner'> 
                 <form noValidate className='searchForm__form' onSubmit={(e)=>{validateForm(e)}} >
                     <img className='searchForm__imgIconSearch' src={LogoSearch} alt='иконка'/>
-                    <input type='text' className='searchForm__inputSearch' name='film' placeholder='Фильм' value={keyWord} onChange={(e)=>handleInput(e)}></input>
+                    <input type='text' className='searchForm__inputSearch' name='film' readOnly={stateDisabled} placeholder='Фильм' value={keyWord} onChange={(e)=>handleInput(e)}></input>
                     <span className='searchForm__error'>{errorText}</span>
-                    <button type='submit' className='searchForm__buttonSubmit'></button>
+                    <button type='submit' className='searchForm__buttonSubmit' disabled={stateDisabled}></button>
                 </form>
                 <label className='searchForm__labelCheckbox'>
                     <FilterCheckbox

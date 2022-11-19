@@ -2,7 +2,7 @@ import './Header.css';
 import logo from '../../images/logo-min.svg';
 import logoAccount from '../../images/profilelogoAccount-min.svg';
 import imgBurgerMenu from '../../images/mainburgerMenu-min.svg'
-import { Link} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function Header({path, openBurgerMenu, loggedIn}){
     return(
@@ -13,8 +13,8 @@ function Header({path, openBurgerMenu, loggedIn}){
                     <div className='header__container'>
                         <a className='header__linkImg' href='/'><img className='header__logo' src={logo} alt='лого'/></a>
                         <div className='header__films'>
-                            <Link to='/movies' className='header__film'>Фильмы</Link>
-                            <Link to='/saved-movies' className='header__film'>Сохранённые фильмы</Link>
+                            <NavLink to='/movies' className='header__film' activeClassName='header__link_type_active'>Фильмы</NavLink>
+                            <NavLink to='/saved-movies' className='header__film' activeClassName='header__link_type_active'>Сохранённые фильмы</NavLink>
                         </div>
                     </div>
                     <Link to='/profile' className='header__account'>

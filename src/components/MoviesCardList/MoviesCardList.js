@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './MoviesCardList.css';
+import { SETTINGS_VIEW_CARD} from '../../utils/data';
 
 function MoviesCardList({path, filmsArray, MoviesCard, saveFilm, deleteFilm}){
     const savedFilmsStorage = JSON.parse(localStorage.getItem('savedFilms'));
@@ -20,14 +20,14 @@ function MoviesCardList({path, filmsArray, MoviesCard, saveFilm, deleteFilm}){
             if( windowInnerWidth !== widthDisplay){
                 setWidthDisplay(windowInnerWidth);
                 if(windowInnerWidth>=1200){
-                    setAmountCardsToLoad(3);
-                    setTotalAmountCardsOnPage(12);
+                    setAmountCardsToLoad(SETTINGS_VIEW_CARD.desktop.add);
+                    setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.desktop.max);
                 } else if (windowInnerWidth<=700){
-                    setAmountCardsToLoad(2);
-                    setTotalAmountCardsOnPage(5);
+                    setAmountCardsToLoad(SETTINGS_VIEW_CARD.mobile.add);
+                    setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.mobile.max);
                 } else {
-                    setAmountCardsToLoad(2);
-                    setTotalAmountCardsOnPage(8);
+                    setAmountCardsToLoad(SETTINGS_VIEW_CARD.tablet.add);
+                    setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.tablet.max);
                 }
             }
         },5000);
@@ -76,14 +76,7 @@ function MoviesCardList({path, filmsArray, MoviesCard, saveFilm, deleteFilm}){
                 }
             </ul>
             <div className='movieCardList__buttonConteiner'>
-                {
-                    path === 'movies' ?
-                    (
-                        <button type='button' className='movieCardList__button' style={isVisibleButton ? {} : {display:'none'}} onClick={addPicture}>Ещё</button>
-                    )
-                    :
-                    ('')
-                }
+                <button type='button' className='movieCardList__button' style={isVisibleButton ? {} : {display:'none'}} onClick={addPicture}>Ещё</button>
             </div>
         </section>
     )
