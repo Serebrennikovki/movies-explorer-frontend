@@ -11,7 +11,7 @@ function Header({path, openBurgerMenu, loggedIn}){
                 loggedIn ?
                 (<div className='header'>
                     <div className='header__container'>
-                        <a className='header__linkImg' href='/'><img className='header__logo' src={logo} alt='лого'/></a>
+                        <Link className='header__linkImg' to='/'><img className='header__logo' src={logo} alt='лого'/></Link>
                         <div className='header__films'>
                             <NavLink to='/movies' className='header__film' activeClassName='header__link_type_active'>Фильмы</NavLink>
                             <NavLink to='/saved-movies' className='header__film' activeClassName='header__link_type_active'>Сохранённые фильмы</NavLink>
@@ -26,7 +26,7 @@ function Header({path, openBurgerMenu, loggedIn}){
                 </div>   
                 ) : (
                 <div className='header'>
-                    <a className='header__linkImg' href='/'><img className='header__logo' src={logo} alt='лого'/></a>
+                    <Link className='header__linkImg' to='/'><img className='header__logo' src={logo} alt='лого'/></Link>
                     <div className='header__links'>
                         <Link to='/signup' className='header__link header__link_type_signup'>Регистрация</Link>
                         <Link to='/signin' className='header__link header__link_type_signin'><p className='header__text'>Войти</p></Link>

@@ -20,7 +20,7 @@ const [ errorTextRegistration, setErrorTextRegistraion ] = useState('');
 const [ errorTextLogin, setErrorTextLogin ] = useState('');
 const [ currentUser, setCurrentUser ] = useState({});
 const [ token , setToken ] = useState('');
-const [ loggedIn, setLoggedIn ] = useState(true);
+const [ loggedIn, setLoggedIn ] = useState(false);
 const [ pathWhereOpenBM, setPathWhereOpenBM] = useState('');
 console.log('initate');
 const history = useHistory();

@@ -1,6 +1,7 @@
 import './AuthForm.css';
 import logo from '../../images/logo-min.svg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { REGEX, TEXT_ERRORS } from '../../utils/data';
 
 function AuthForm({isRegisterForm, titleAuth, nameButton, errorText, functionSubmit }){
@@ -55,11 +56,11 @@ function AuthForm({isRegisterForm, titleAuth, nameButton, errorText, functionSub
             {isRegisterForm ? 
             (<div className='formAuth__linkConteiner'>
                 <p className="formAuth__text">Уже зарегистрированы?</p>
-                <a className="formAuth__link" href="/signin"> Войти</a>
+                <Link className="formAuth__link" to="/signin"> Войти</Link>
             </div>) : (
             <div className='formAuth__linkConteiner'>
                 <p className="formAuth__text">Ещё не зарегистрированы?</p>
-                <a className="formAuth__link" href="/signup"> Регистрация</a>
+                <Link className="formAuth__link" to="/signup"> Регистрация</Link>
             </div>
             )}
         </form>
