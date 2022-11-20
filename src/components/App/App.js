@@ -22,6 +22,7 @@ const [ currentUser, setCurrentUser ] = useState({});
 const [ token , setToken ] = useState('');
 const [ loggedIn, setLoggedIn ] = useState(true);
 const [ pathWhereOpenBM, setPathWhereOpenBM] = useState('');
+console.log('initate');
 const history = useHistory();
 
 useEffect(()=>{
@@ -129,21 +130,6 @@ function tokenCheck(){
   <CurrentUserContext.Provider value={currentUser}>
     <div className="app">
         <Switch>
-          <Route path='/signin'>
-            {loggedIn ? <Redirect to='/'/>:<Login
-                                            handleSubmit={onLogin}
-                                            errorText = {errorTextLogin}/>}
-          </Route>
-          <Route path='/signup'>
-            {loggedIn ? <Redirect to='/'/>:<Register
-                                          handleSubmit={onRegistration}
-                                          errorText={errorTextRegistration}/>}
-          </Route>
-          <Route exact path='/'>
-            <Main
-            openBM={openBurgerMenu}
-            loggedIn={loggedIn}/>
-          </Route>
           <ProtectedRoute path='/movies'
             loggedIn = {loggedIn}
             component={Movies}
@@ -165,8 +151,22 @@ function tokenCheck(){
             onChangeProfile={changeProfile}
             onSignOut={onSignOut}
             setCurrentUser={setCurrentUser}
-            /> 
-            
+            />
+          <Route path='/signin'>
+            {loggedIn ? <Redirect to='/'/>:<Login
+                                            handleSubmit={onLogin}
+                                            errorText = {errorTextLogin}/>}
+          </Route>
+          <Route path='/signup'>
+            {loggedIn ? <Redirect to='/'/>:<Register
+                                          handleSubmit={onRegistration}
+                                          errorText={errorTextRegistration}/>}
+          </Route>
+          <Route path='/'>
+            <Main
+            openBM={openBurgerMenu}
+            loggedIn={loggedIn}/>
+          </Route>     
           <Route path='*'>
             <NotFound/>
           </Route>

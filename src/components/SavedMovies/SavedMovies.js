@@ -14,8 +14,10 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
     const [ errorSearchText, setErrorSearchText ] = useState('');
 
     useEffect(()=>{
-        setSavedArrayFilms(JSON.parse(localStorage.getItem('savedFilms')));
-        setSearchedArrayFilms(JSON.parse(localStorage.getItem('savedFilms')));
+        if(Boolean(JSON.parse(localStorage.getItem('savedFilms')))){
+            setSavedArrayFilms(JSON.parse(localStorage.getItem('savedFilms')));
+            setSearchedArrayFilms(JSON.parse(localStorage.getItem('savedFilms')));
+        }
     },[])
 
     useEffect(()=>{
@@ -24,7 +26,6 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
 
 
     function sortFilms(keyWord, isShortFilm){
-        console.log(123);
         setIsLoading(true);
         let array = savedArrayFilms;
         const keyWordLower = keyWord.toLowerCase();
