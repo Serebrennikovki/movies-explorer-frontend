@@ -58,7 +58,6 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
     }
 
     function sortFilms(keyWord, isShortFilm, array){
-        console.log(array.length, array);
         const keyWordLower = keyWord.toLowerCase();
         array = array.filter((film)=>{
             if(film.nameRU.toLowerCase().includes(keyWordLower)){

@@ -35,7 +35,6 @@ function SearchForm({path, submitForm, isLoadingFilms}){
     function handleSubmit(){
         setErrorText('');
         submitForm(keyWord, isToggled); 
-        console.log(isToggled);
     }
 
     function handleCheckbox(state){

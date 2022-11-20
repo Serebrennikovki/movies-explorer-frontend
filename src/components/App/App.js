@@ -22,7 +22,6 @@ const [ currentUser, setCurrentUser ] = useState({});
 const [ token , setToken ] = useState('');
 const [ loggedIn, setLoggedIn ] = useState(false);
 const [ pathWhereOpenBM, setPathWhereOpenBM] = useState('');
-console.log('initate');
 const history = useHistory();
 
 useEffect(()=>{
@@ -48,10 +47,8 @@ function deleteFilm(id){
 
 function getFilms(){
   const jwt = localStorage.getItem('jwt');
-  api.getFilms(jwt)
-    .then((res)=>{
-      localStorage.setItem('savedFilms',JSON.stringify(res));})
-      .catch((err)=>{console.log(err)})
+  return api.getFilms(jwt)
+    
 }
 
 function changeProfile(userInfo){
@@ -110,7 +107,10 @@ function tokenCheck(){
         setToken(jwt);
         setLoggedIn(true);
         setCurrentUser(data);
-        getFilms();
+        getFilms()
+        .then((res)=>{
+          localStorage.setItem('savedFilms',JSON.stringify(res));})
+        .catch((err)=>{console.log(err)})
       } else {
         localStorage.clear();
         history.push('/');

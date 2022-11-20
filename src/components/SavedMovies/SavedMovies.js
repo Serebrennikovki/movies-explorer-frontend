@@ -14,10 +14,12 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
     const [ errorSearchText, setErrorSearchText ] = useState('');
 
     useEffect(()=>{
-        if(Boolean(JSON.parse(localStorage.getItem('savedFilms')))){
-            setSavedArrayFilms(JSON.parse(localStorage.getItem('savedFilms')));
-            setSearchedArrayFilms(JSON.parse(localStorage.getItem('savedFilms')));
-        }
+            getFilms()
+            .then((res)=>{
+                localStorage.setItem('savedFilms',JSON.stringify(res));
+                setSavedArrayFilms(res);
+                setSearchedArrayFilms(res);})
+            .catch((err)=>{console.log(err)})
     },[])
 
     useEffect(()=>{

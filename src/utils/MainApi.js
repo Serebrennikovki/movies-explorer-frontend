@@ -102,7 +102,6 @@ class Api {
     }
 
     getFilms(token){
-        console.log('token=', token);
         return fetch(`${this._baseUrl}movies`,
         {
             method: 'GET',
