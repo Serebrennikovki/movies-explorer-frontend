@@ -56,6 +56,7 @@ function changeProfile(userInfo){
 }
 
 function onLogin(valuesForm){
+  setErrorTextLogin('');
   api.login(valuesForm.email, valuesForm.password)
   .then(res=>{
     setToken(res.jwt);
@@ -75,6 +76,7 @@ function onLogin(valuesForm){
 }
 
 function onRegistration(valuesForm){
+  setErrorTextRegistraion('');
     api.register(valuesForm)
     .then(res=>{
       if(res._id){
