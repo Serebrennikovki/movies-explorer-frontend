@@ -62,8 +62,8 @@
     color: #8B8B8B;
 }
 .moviesCardSaved__poster{
-    max-height: 203px;
-    max-width: 364px;
+    height: 203px;
+    width: 364px;
 }
 
 @media screen and (max-width: 1200px) {

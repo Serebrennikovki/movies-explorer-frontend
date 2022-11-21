@@ -30,7 +30,7 @@ function MoviesCardList({path, filmsArray, MoviesCard, saveFilm, deleteFilm}){
                     setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.tablet.max);
                 }
             }
-        },5000);
+        },1000);
 
         return()=> clearInterval(timer);
     }, []);

@@ -14,18 +14,21 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
     const [ isLoading, setIsLoading ] = useState(false);
     const [ keyWord, setKeyWord ] = useState('');
     const [ isShortFilm, setShortFilm] = useState(false);
+    const [ allMovies, setAllMovies ] = useState([]);
     const [ sortingArrayFilms, setSortingArrayFilms ] = useState([]);
     const [ errorSearchText, setErrorSearchText ] = useState('');
 
 
 
     useEffect(()=>{ 
-        if(JSON.parse(localStorage.getItem('MoviesCardList'))){
-            setSortingArrayFilms(JSON.parse(localStorage.getItem('MoviesCardList')));
+        let savedArray = JSON.parse(localStorage.getItem('MoviesCardList'));
+        if(savedArray){
+            console.log('получаем данные из ЛокалСтораджа');
+            setSortingArrayFilms(savedArray);
             setShortFilm(localStorage.getItem('isToggled'));
             setKeyWord(localStorage.getItem('keyWord'));
             if(localStorage.getItem('keyWord') !== ''){
-                handleEmptyArray(JSON.parse(localStorage.getItem('MoviesCardList')).length);
+                handleEmptyArray(savedArray.length);
             }  
         }     
     },[])
@@ -37,12 +40,15 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
     }, [sortingArrayFilms])
 
     function getFilms(searchWord, stateCheckbox){
+        //let arrayAllFilms = JSON.parse(localStorage.getItem('allFilms'));
+        console.log('getFilms',allMovies);
         if(searchWord === keyWord && stateCheckbox === isShortFilm){
             return;
-        } else if(JSON.parse(localStorage.getItem('allFilms'))){
+        } else if(allMovies.length !== 0){
+            console.log('упрощенный поиск');
             setKeyWord(searchWord);
             setShortFilm(stateCheckbox);
-            sortFilms(searchWord, stateCheckbox, JSON.parse(localStorage.getItem('allFilms')));
+            sortFilms(searchWord, stateCheckbox, allMovies);
         } else {
             setIsLoading(true);
             getAllFilms(BASE_URL_MOVIES+'/beatfilm-movies')
@@ -51,6 +57,7 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
                     setShortFilm(stateCheckbox);
                     sortFilms(searchWord, stateCheckbox, res);
                     localStorage.setItem('allFilms', JSON.stringify(res));
+                    setAllMovies(res);
                     })
                 .catch(()=>setErrorSearchText(TEXT_ERRORS.search.error))
                 .finally(()=>setIsLoading(false))

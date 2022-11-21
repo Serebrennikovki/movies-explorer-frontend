@@ -63,6 +63,7 @@ function onLogin(valuesForm){
     localStorage.setItem('jwt', res.jwt);
     setLoggedIn(true);
     setCurrentUser(res.user);
+    getFilmsInitial();
     history.push('/movies');
    })
     .catch((err)=>{
@@ -94,6 +95,15 @@ function onRegistration(valuesForm){
     })
 }
 
+function getFilmsInitial(){
+  const jwt = localStorage.getItem('jwt');
+  return api.getFilms(jwt)
+  .then((res)=>{
+    localStorage.setItem('savedFilms',JSON.stringify(res));})
+  .catch((err)=>{console.log(err)})
+}
+
+
 function onSignOut(){
   setLoggedIn(false);
   localStorage.clear();
@@ -109,10 +119,7 @@ function tokenCheck(){
         setToken(jwt);
         setLoggedIn(true);
         setCurrentUser(data);
-        getFilms()
-        .then((res)=>{
-          localStorage.setItem('savedFilms',JSON.stringify(res));})
-        .catch((err)=>{console.log(err)})
+        getFilmsInitial();
       } else {
         localStorage.clear();
         history.push('/');
@@ -164,7 +171,7 @@ function tokenCheck(){
                                           handleSubmit={onRegistration}
                                           errorText={errorTextRegistration}/>}
           </Route>
-          <Route path='/'>
+          <Route exact path='/'>
             <Main
             openBM={openBurgerMenu}
             loggedIn={loggedIn}/>

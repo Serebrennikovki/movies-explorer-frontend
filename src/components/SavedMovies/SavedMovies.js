@@ -16,7 +16,7 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
     useEffect(()=>{
             getFilms()
             .then((res)=>{
-                localStorage.setItem('savedFilms',JSON.stringify(res));
+                //localStorage.setItem('savedFilms',JSON.stringify(res));
                 setSavedArrayFilms(res);
                 setSearchedArrayFilms(res);})
             .catch((err)=>{console.log(err)})

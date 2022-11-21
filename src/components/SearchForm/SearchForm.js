@@ -52,7 +52,7 @@ function SearchForm({path, submitForm, isLoadingFilms}){
             <div className='searchForm__conteiner'> 
                 <form noValidate className='searchForm__form' onSubmit={(e)=>{validateForm(e)}} >
                     <img className='searchForm__imgIconSearch' src={LogoSearch} alt='иконка'/>
-                    <input type='text' className='searchForm__inputSearch' name='film' readOnly={stateDisabled} placeholder='Фильм' value={keyWord} onChange={(e)=>handleInput(e)}></input>
+                    <input type='text' className='searchForm__inputSearch' name='film' disabled={stateDisabled} placeholder='Фильм' value={keyWord} onChange={(e)=>handleInput(e)}></input>
                     <span className='searchForm__error'>{errorText}</span>
                     <button type='submit' className='searchForm__buttonSubmit' disabled={stateDisabled}></button>
                 </form>
