@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import './MoviesCardList.css';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import './MoviesCardListSaved.css';
+import MoviesCardSaved from '../MoviesCardSaved/MoviesCardSaved';
 import { SETTINGS_VIEW_CARD} from '../../utils/constants';
 
-function MoviesCardList({path, filmsArray, MoviesCard, saveFilm, deleteFilm}){
-    const savedFilmsStorage = JSON.parse(localStorage.getItem('savedFilms'));
-    const savedFilms = Boolean( savedFilmsStorage) ? savedFilmsStorage : [];
+function MoviesCardListSaved({ filmsArray, deleteFilm}){
     const [ lastNumberRenderElement, setLastRenderElement ] = useState(0);
     const [ displayDataArray, setDisplayDataArray ] = useState([]);
     const [ widthDisplay, setWidthDisplay ] = useState(0);
@@ -13,9 +13,10 @@ function MoviesCardList({path, filmsArray, MoviesCard, saveFilm, deleteFilm}){
     const [ isVisibleButton, setIsVisibleButton ] = useState(true);
     let windowInnerWidth;
 
+
     useEffect(()=>{
-        checkWidthDisplay()
-        const timer = setInterval(()=>checkWidthDisplay(),3000);
+        checkWidthDisplay();
+        const timer = setInterval(()=>checkWidthDisplay(),5000);
         return()=> clearInterval(timer);
     }, []);
 
@@ -29,23 +30,23 @@ function MoviesCardList({path, filmsArray, MoviesCard, saveFilm, deleteFilm}){
         }
     },[filmsArray, widthDisplay]);
 
-
     function checkWidthDisplay(){
-        windowInnerWidth = window.innerWidth;
-        if( windowInnerWidth !== widthDisplay){
-            setWidthDisplay(windowInnerWidth);
-            if(windowInnerWidth>=1200){
-                setAmountCardsToLoad(SETTINGS_VIEW_CARD.desktop.add);
-                setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.desktop.max);
-            } else if (windowInnerWidth<=700){
-                setAmountCardsToLoad(SETTINGS_VIEW_CARD.mobile.add);
-                setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.mobile.max);
-            } else {
-                setAmountCardsToLoad(SETTINGS_VIEW_CARD.tablet.add);
-                setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.tablet.max);
+            windowInnerWidth = window.innerWidth;
+            if( windowInnerWidth !== widthDisplay){
+                setWidthDisplay(windowInnerWidth);
+                if(windowInnerWidth>=1200){
+                    setAmountCardsToLoad(SETTINGS_VIEW_CARD.desktop.add);
+                    setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.desktop.max);
+                } else if (windowInnerWidth<=700){
+                    setAmountCardsToLoad(SETTINGS_VIEW_CARD.mobile.add);
+                    setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.mobile.max);
+                } else {
+                    setAmountCardsToLoad(SETTINGS_VIEW_CARD.tablet.add);
+                    setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.tablet.max);
+                }
             }
-        }
-}
+    }
+
 
      function addPicture(){
         let lastIndex = lastNumberRenderElement + amountCardsToLoad;
@@ -60,14 +61,11 @@ function MoviesCardList({path, filmsArray, MoviesCard, saveFilm, deleteFilm}){
     return(
         <section className='movieCardList'>
             <ul className='movieCardList__table'>
-                { 
-                    
+                {  
                     displayDataArray.map((item) => {
-                        return <MoviesCard 
+                        return <MoviesCardSaved 
                         film={item} 
-                        key={item.id} 
-                        savedFilms={savedFilms}
-                        saveFilm={saveFilm}
+                        key={item._id} 
                         deleteFilm={deleteFilm}
                         />
                     })
@@ -79,4 +77,4 @@ function MoviesCardList({path, filmsArray, MoviesCard, saveFilm, deleteFilm}){
         </section>
     )
 }
-export default MoviesCardList;
+export default MoviesCardListSaved;

@@ -1,7 +1,8 @@
 import './BurgerMenu.css';
 import logoAccount from '../../images/profilelogoAccount-min.svg';
+import { NavLink } from 'react-router-dom';
 
-function BurgerMenu({isOpened, closeBM}){
+function BurgerMenu({path, isOpened, closeBM}){
     return(
         <div className={`burgerMenu ${isOpened ? 'burgerMenu_opened': ''}`}>
             <div className='burgerMenu__overlay' onClick={closeBM}></div>
@@ -9,12 +10,12 @@ function BurgerMenu({isOpened, closeBM}){
                 <button type='button' className='burgerMenu__btnClose' onClick={closeBM}></button>
                 <nav className='burgerMenu__navigation'>
                     <ul className='burgerMenu__items'>
-                        <li className='burgerMenu__item'><a className='burgerMenu__link' href='/'>Главная</a></li>
-                        <li className='burgerMenu__item burgerMenu__item_type_choosen'><a className='burgerMenu__link' href='/movies'>Фильмы</a></li>
-                        <li className='burgerMenu__item'><a className='burgerMenu__link' href='/saved-movies'>Сохранённые фильмы</a></li>
-                        <li className='burgerMenu__item'><a className='burgerMenu__link burgerMenu__link_type_account' href='/profile'>
+                        <li className='burgerMenu__item'><NavLink className='burgerMenu__link' exact to='/' activeClassName='burgerMenu__item_type_choosen' onClick={closeBM}>Главная</NavLink></li>
+                        <li className='burgerMenu__item'><NavLink className='burgerMenu__link' to='/movies' activeClassName='burgerMenu__item_type_choosen' onClick={closeBM}>Фильмы</NavLink></li>
+                        <li className='burgerMenu__item'><NavLink className='burgerMenu__link' to='/saved-movies' activeClassName='burgerMenu__item_type_choosen' onClick={closeBM}>Сохранённые фильмы</NavLink></li>
+                        <li className='burgerMenu__item'><NavLink className='burgerMenu__link burgerMenu__link_type_account' to='/profile' onClick={closeBM}>
                             <img src={logoAccount} className='burgerMenu__logoAcc' alt='логотип'/>
-                            </a></li>
+                            </NavLink></li>
                     </ul>                    
                 </nav>
             </div> 

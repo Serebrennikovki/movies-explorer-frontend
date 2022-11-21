@@ -31,6 +31,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
 }
 .formAuth__inputConteiner:first-child{
     margin-top: 0;
@@ -53,8 +54,19 @@
     line-height: 16px;
     color: #FFFFFF;
 }
+.authForm__errorRequest{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    width: 100%;
+    position: absolute;
+    color: #EE3465;
+    bottom: -45px;
+    text-align: center;
+}
 
 .formAuth__inputs{
+    position: relative;
     margin-top: 40px;
     display: flex;
     flex-direction: column;
@@ -80,6 +92,11 @@
 }
 .formAuth__button:hover{
     opacity: 0.8;
+}
+
+.formAuth__button_type_disable{
+    opacity: 0.8;
+    background-color: #2F2F2F;
 }
 .authForm__error{
     font-weight: 400;
