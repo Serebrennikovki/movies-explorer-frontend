@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import './MoviesCardListSaved.css';
 import MoviesCardSaved from '../MoviesCardSaved/MoviesCardSaved';
-import { SETTINGS_VIEW_CARD} from '../../utils/data';
+import { SETTINGS_VIEW_CARD} from '../../utils/constants';
 
 function MoviesCardListSaved({ filmsArray, deleteFilm}){
     const [ lastNumberRenderElement, setLastRenderElement ] = useState(0);
@@ -11,11 +11,26 @@ function MoviesCardListSaved({ filmsArray, deleteFilm}){
     const [ amountCardsToLoad, setAmountCardsToLoad ] = useState(0);
     const [ totalAmountCardsOnPage, setTotalAmountCardsOnPage ] = useState(0);
     const [ isVisibleButton, setIsVisibleButton ] = useState(true);
+    let windowInnerWidth;
 
 
     useEffect(()=>{
-        let windowInnerWidth;
-        const timer = setInterval(()=>{
+        checkWidthDisplay();
+        const timer = setInterval(()=>checkWidthDisplay(),5000);
+        return()=> clearInterval(timer);
+    }, []);
+
+    useEffect(()=>{
+        setDisplayDataArray(filmsArray.slice(0, totalAmountCardsOnPage));
+        setLastRenderElement(totalAmountCardsOnPage);
+        if(filmsArray.length <= totalAmountCardsOnPage){
+            setIsVisibleButton(false);
+        } else {
+            setIsVisibleButton(true);
+        }
+    },[filmsArray, widthDisplay]);
+
+    function checkWidthDisplay(){
             windowInnerWidth = window.innerWidth;
             if( windowInnerWidth !== widthDisplay){
                 setWidthDisplay(windowInnerWidth);
@@ -30,28 +45,12 @@ function MoviesCardListSaved({ filmsArray, deleteFilm}){
                     setTotalAmountCardsOnPage(SETTINGS_VIEW_CARD.tablet.max);
                 }
             }
-        },5000);
-
-        return()=> clearInterval(timer);
-    }, []);
-
-    useEffect(()=>{
-        setDisplayDataArray(filmsArray.slice(0, amountCardsToLoad));
-        setLastRenderElement(amountCardsToLoad);
-        if(filmsArray.length <= amountCardsToLoad){
-            setIsVisibleButton(false);
-        } else {
-            setIsVisibleButton(true);
-        }
-    },[filmsArray, widthDisplay]);
+    }
 
 
      function addPicture(){
         let lastIndex = lastNumberRenderElement + amountCardsToLoad;
         let array = displayDataArray.concat(filmsArray.slice(lastNumberRenderElement, lastNumberRenderElement+amountCardsToLoad));
-        if(array.length > totalAmountCardsOnPage){
-            array.splice(0, totalAmountCardsOnPage);
-        }
         setDisplayDataArray(array);
         setLastRenderElement(lastIndex);
         if(lastIndex >= filmsArray.length){

@@ -38,7 +38,6 @@ function SearchForm({path, submitForm, isLoadingFilms}){
     }
 
     function handleCheckbox(state){
-        console.log('state',state);
         setIsToggled(state);
         submitForm(keyWord, state);
     }
@@ -50,7 +49,7 @@ function SearchForm({path, submitForm, isLoadingFilms}){
     return(
         <section className='searchForm'>
             <div className='searchForm__conteiner'> 
-                <form noValidate className='searchForm__form' onSubmit={(e)=>{validateForm(e)}} >
+                <form noValidate className='searchForm__form' onSubmit={(e)=>{validateForm(e)}} disabled={stateDisabled}>
                     <img className='searchForm__imgIconSearch' src={LogoSearch} alt='иконка'/>
                     <input type='text' className='searchForm__inputSearch' name='film' disabled={stateDisabled} placeholder='Фильм' value={keyWord} onChange={(e)=>handleInput(e)}></input>
                     <span className='searchForm__error'>{errorText}</span>

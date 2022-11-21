@@ -17,7 +17,7 @@ function AuthForm({isRegisterForm, titleAuth, nameButton, errorText, functionSub
         setValues({...values, [name]: value});
         setErrors({...errors, [name]: target.validationMessage });
         setIsValid(target.closest("form").checkValidity());
-        if(name === 'name' && !target.closest("form").checkValidity()){
+        if(name === 'name' && target.validationMessage){
             setErrors({...errors, [name]:TEXT_ERRORS.validation.inputName});
         }
     }

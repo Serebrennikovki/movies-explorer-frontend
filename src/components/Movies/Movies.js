@@ -23,13 +23,11 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
     useEffect(()=>{ 
         let savedArray = JSON.parse(localStorage.getItem('MoviesCardList'));
         if(savedArray){
-            console.log('получаем данные из ЛокалСтораджа');
             setSortingArrayFilms(savedArray);
             setShortFilm(localStorage.getItem('isToggled'));
             setKeyWord(localStorage.getItem('keyWord'));
-            if(localStorage.getItem('keyWord') !== ''){
-                handleEmptyArray(savedArray.length);
-            }  
+            setAllMovies(JSON.parse(localStorage.getItem('allFilms')));
+            handleEmptyArray(savedArray.length);  
         }     
     },[])
 
@@ -40,17 +38,16 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
     }, [sortingArrayFilms])
 
     function getFilms(searchWord, stateCheckbox){
-        //let arrayAllFilms = JSON.parse(localStorage.getItem('allFilms'));
-        console.log('getFilms',allMovies);
+        setIsLoading(true);
         if(searchWord === keyWord && stateCheckbox === isShortFilm){
+            setIsLoading(false);
             return;
         } else if(allMovies.length !== 0){
-            console.log('упрощенный поиск');
             setKeyWord(searchWord);
             setShortFilm(stateCheckbox);
             sortFilms(searchWord, stateCheckbox, allMovies);
         } else {
-            setIsLoading(true);
+            
             getAllFilms(BASE_URL_MOVIES+'/beatfilm-movies')
                 .then((res)=>{
                     setKeyWord(searchWord);
@@ -72,12 +69,14 @@ function Movies({openBM, addFilm, deleteFilm, loggedIn}){
             } else {
                 return false;
             }
+        
         });
         handleEmptyArray(array.length);
         setSortingArrayFilms(array);
         if( isShortFilm ){
             getShortFilms(array);
-        };      
+        };
+        setIsLoading(false);      
     }
 
     function getShortFilms(array = sortingArrayFilms){

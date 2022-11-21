@@ -20,7 +20,7 @@ const [ errorTextRegistration, setErrorTextRegistraion ] = useState('');
 const [ errorTextLogin, setErrorTextLogin ] = useState('');
 const [ currentUser, setCurrentUser ] = useState({});
 const [ token , setToken ] = useState('');
-const [ loggedIn, setLoggedIn ] = useState(false);
+const [ loggedIn, setLoggedIn ] = useState(Boolean(localStorage.getItem('jwt')) ? true : false);
 const [ pathWhereOpenBM, setPathWhereOpenBM] = useState('');
 const history = useHistory();
 

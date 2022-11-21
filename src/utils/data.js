@@ -21,22 +21,6 @@ export const TEXT_ERRORS = {
 
 }
 
-export const SETTINGS_VIEW_CARD = {
-     desktop : {
-        'add': 3,
-        'max': 12
-     },
-     tablet: {
-        'add': 2,
-        'max': 8
-     },
-     mobile: {
-        'add': 1,
-        'max': 5
-     }
-
-}
-
 export const DURATION_SHORT_FILMS = 42;
 
 export const BASE_URL_MOVIES = 'https://api.nomoreparties.co';

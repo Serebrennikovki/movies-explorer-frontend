@@ -16,15 +16,11 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
     useEffect(()=>{
             getFilms()
             .then((res)=>{
-                //localStorage.setItem('savedFilms',JSON.stringify(res));
+                localStorage.setItem('savedFilms',JSON.stringify(res));
                 setSavedArrayFilms(res);
                 setSearchedArrayFilms(res);})
             .catch((err)=>{console.log(err)})
     },[])
-
-    useEffect(()=>{
-        localStorage.setItem('savedFilms',JSON.stringify(savedArrayFilms))
-    },[savedArrayFilms])
 
 
     function sortFilms(keyWord, isShortFilm){
@@ -37,12 +33,14 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
             } else {
                 return false;
             }
+            setIsLoading(false);
         });
         handleEmptyArray(array.length);
         setSearchedArrayFilms(array);
         if( isShortFilm ){
             getShortFilms(array);
         };      
+        setIsLoading(false);
     }
 
     function getShortFilms(array = savedArrayFilms){
@@ -70,6 +68,7 @@ function SavedMovies({openBM, getFilms, deleteSavedFilm, loggedIn}){
             });
             setSavedArrayFilms(array);
             setSearchedArrayFilms(array);
+            localStorage.setItem('savedFilms',JSON.stringify(array));
           })
             .catch((error)=>{console.log(error);})
     }
